@@ -20,5 +20,29 @@ public class TestDocSearch {
     String expect = String.format("Found 2 paths:\n.%stechnical%sbiomed%sar615.txt\n.%stechnical%splos%sjournal.pbio.0020150.txt", sep, sep, sep, sep, sep, sep);
     assertEquals(expect, h.handleRequest(rootPath));
 	}
+    @Test 
+	public void testSearch2() throws URISyntaxException, IOException {
+    Handler h = new Handler("./technical/");
+    String sep = File.separator;
+    URI rootPath = new URI("http://localhost/search?q=dinosaur");
+    String expect = String.format("Found 2 paths:\n.%stechnical%splos%sjournal.pbio.0020272.txt\n.%stechnical%splos%sjournal.pbio.0030056.txt", sep, sep, sep, sep, sep, sep);
+    assertEquals(expect, h.handleRequest(rootPath));
+	}
+    @Test 
+	public void testSearch3() throws URISyntaxException, IOException {
+    Handler h = new Handler("./technical/");
+    String sep = File.separator;
+    URI rootPath = new URI("http://localhost/search?q=pluto");
+    String expect = String.format("Found 1 paths:\n.%stechnical%s911report%schapter-12.txt", sep, sep, sep);
+    assertEquals(expect, h.handleRequest(rootPath));
+	}
+    @Test 
+	public void testSearch4() throws URISyntaxException, IOException {
+    Handler h = new Handler("./technical/");
+    String sep = File.separator;
+    URI rootPath = new URI("http://localhost/search?q=saturn");
+    String expect = "Found 0 paths:\n";
+    assertEquals(expect, h.handleRequest(rootPath));
+	}
 }
 
